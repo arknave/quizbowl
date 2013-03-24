@@ -8,20 +8,6 @@ var servopts = {
 
 var esc = new ElasticSearchClient(servopts);
 
-exports.index = function(req, res){
-  var data = JSON.parse(req.body.data);
-  data.forEach(function(d){
-    d.forEach(function(f){
-      esc.index('questions', req.params.type, f)
-        .on('error', function(err) {
-          throw err;
-        })
-        .exec(); 
-    });
-  });
-  res.send('mission complete');
-};
-
 exports.search = function(req, res){
   var qryObj = 
   {

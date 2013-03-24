@@ -17,19 +17,6 @@ app.get('/', function(req, res){
   res.render('index');
 });
 
-app.post('/upload/', function(req,res){
-  parser = require('./parser.js');
-  var tournament = {'name' : req.body.tname, 'year' : req.body.tyear,   'diff' : req.body.diff};
-  parser.zipconv([req.files.zip.path, tournament], function(err, p){
-    if(err){ console.log(err); res.send(500, err); }
-    res.send(p);
-  });
-});
-
-app.get('/upload/', function(req, res){
-  res.render('upload'); 
-});
-
 app.get('/search/:query?', function(req,res){
   res.render('search');
 });
